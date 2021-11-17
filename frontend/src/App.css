@@ -1,18 +1,12 @@
 #game-board {
   margin-left: 20rem;
-  background-color: lightblue;
-  width: 20rem;
-  height: 20rem;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(10, 10px);
-  grid-template-rows: repeat(10, 10px);
+  background-color: seashell;
+  width: 300px;
+  height: 300px;
 }
 
 .grid-cell {
-  background-color: yellow;
+  background-color: lightblue;
   border: 1px solid black;
   box-sizing: border-box;
 }
