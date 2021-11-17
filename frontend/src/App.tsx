@@ -5,7 +5,7 @@ const App = () => {
   const gameBoard: GameBoard = {
     boardHeight: 10,
     boardWidth: 10,
-  }
+  };
 
   const generateRow = (rowNum: number) => {
     const elements = [];
@@ -13,7 +13,7 @@ const App = () => {
       elements.push(<td key={`${i} - ${rowNum}`} className="grid-cell"></td>);
     }
     return elements;
-  }
+  };
 
   return (
     <div className="App">
@@ -55,6 +55,6 @@ const App = () => {
       </table>
     </div>
   );
-}
+};
 
 export default App;
