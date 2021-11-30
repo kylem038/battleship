@@ -4,6 +4,7 @@ interface GameBoard {
 }
 
 interface DragTarget {
-  x: number;
-  y: number;
+  x: number | null;
+  y: number | null;
+  target: EventTarget | null;
 }

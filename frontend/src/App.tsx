@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Draggable from 'react-draggable';
 import './App.css';
 
-// import ship2 from '../public/ship_2.png';
-
-// ship selection mode (enum)
-// render a ship (svgs)
-// drag and drop functionality (snap to cell)
-// 
+// TODOs
+// Create a component for Cells
+// On mouseover Cell invokes function to render ship in cell
+// Hide original draggable image
+// On mouseout hide Cell ship and show draggable ship
+// Ship type can be passed in some way
 
 enum GameMode {
   Placement = 1,
@@ -15,7 +15,7 @@ enum GameMode {
 
 const App = () => {
   const [gameMode, setGameMode] = useState(GameMode.Placement);
-  const [currentDragTarget, setCurrentDragTarget] = useState<DragTarget>({ x: 0, y: 0 });
+  const [currentDragTarget, setCurrentDragTarget] = useState<DragTarget>({ x: null, y: null, target: null });
   const gameBoard: GameBoard = {
     boardHeight: 10,
     boardWidth: 10,
@@ -32,7 +32,8 @@ const App = () => {
     for (let i = 0; i < gameBoard.boardWidth; i++) {
       elements.push(
         <td
-          onMouseOver={() => setCurrentDragTarget({ x: i, y: colNum })}
+          onMouseOver={({ target }) => setCurrentDragTarget({ x: i, y: colNum, target })}
+          onMouseLeave={() => setCurrentDragTarget({ x: null, y: null, target: null })}
           key={`${i} - ${colNum}`}
           className="grid-cell">
         </td>);
