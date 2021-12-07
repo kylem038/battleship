@@ -17,12 +17,13 @@
 
 .ship-area {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-left: 2rem;
   margin-top: 2rem;
   padding: 5%;
   border: 1px solid black;
-  width: 40%;
+  width: 60%;
 }
 
 .ship2 {

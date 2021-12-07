@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Draggable from 'react-draggable';
 import './App.css';
 
@@ -18,8 +18,6 @@ import { Ships, GameMode } from './enums';
 
 const App = () => {
   const [gameMode, setGameMode] = useState(GameMode.Placement);
-  const nodeRef1 = useRef(null);
-  const nodeRef2 = useRef(null);
 
   const gameBoard: GameBoard = {
     boardHeight: 10,
@@ -46,6 +44,19 @@ const App = () => {
     return elements;
   };
 
+  const generateShips = () => {
+    const ships = [Ships.patrolBoat, Ships.submarine, Ships.destroyer, Ships.battleship, Ships.carrier];
+    return ships.map((ship, i) => {
+      return (
+        <Draggable key={`ship-${i}`}>
+          <div>
+            <Ship ship={ship} />
+          </div>
+        </Draggable>
+      );
+    });
+  };
+
   return (
     <div className="App">
       <h1>Battleship</h1>
@@ -57,16 +68,7 @@ const App = () => {
       </table>
       <div className="ship-area">
         <h2>Ships</h2>
-        <Draggable nodeRef={nodeRef1}>
-          <div ref={nodeRef1}>
-            <Ship ship={Ships.patrolBoat} />
-          </div>
-        </Draggable>
-        <Draggable nodeRef={nodeRef2}>
-          <div ref={nodeRef2}>
-            <Ship ship={Ships.submarine} />
-          </div>
-        </Draggable>
+        {generateShips()}
       </div>
     </div>
   );

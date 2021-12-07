@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Types
+import { Ships } from './enums';
+
 interface Props {
   ship: Ships;
 }
