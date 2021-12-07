@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Cell from './Cell';
 import Draggable from 'react-draggable';
 import './App.css';
 
@@ -15,28 +16,16 @@ enum GameMode {
 
 const App = () => {
   const [gameMode, setGameMode] = useState(GameMode.Placement);
-  const [currentDragTarget, setCurrentDragTarget] = useState<DragTarget>({ x: null, y: null, target: null });
+
   const gameBoard: GameBoard = {
     boardHeight: 10,
     boardWidth: 10,
   };
 
-  useEffect(() => {
-    console.log('Set current drag target');
-    console.log('Drag target X', currentDragTarget.x);
-    console.log('Drag target Y', currentDragTarget.y);
-  }, [currentDragTarget]);
-
   const generateColumn = (colNum: number) => {
     const elements = [];
     for (let i = 0; i < gameBoard.boardWidth; i++) {
-      elements.push(
-        <td
-          onMouseOver={({ target }) => setCurrentDragTarget({ x: i, y: colNum, target })}
-          onMouseLeave={() => setCurrentDragTarget({ x: null, y: null, target: null })}
-          key={`${i} - ${colNum}`}
-          className="grid-cell">
-        </td>);
+      elements.push(<Cell x={i} y={colNum} key={`${i} - ${colNum}`} />);
     }
     return elements;
   };
@@ -45,7 +34,7 @@ const App = () => {
     const elements = [];
     for (let i = 0; i < gameBoard.boardHeight; i++) {
       elements.push(
-        <tr>
+        <tr key={`rows-${i}`}>
           {generateColumn(i)}
         </tr>,
       );
