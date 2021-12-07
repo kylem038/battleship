@@ -12,9 +12,6 @@ import { Ships, GameMode } from './enums';
 // On mouseover Cell invokes function to render ship in cell
 // Hide original draggable image
 // On mouseout hide Cell ship and show draggable ship
-// Ship type can be passed in some way
-
-
 
 const App = () => {
   const [gameMode, setGameMode] = useState(GameMode.Placement);

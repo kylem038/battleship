@@ -29,7 +29,7 @@ const Ship: React.FC<Props> = ({ ship }) => {
       throw Error('F off');
   }
   return (
-    <img className="ship2" src={src} draggable='false' />
+    <img className="ship" src={src} draggable='false' />
   );
 };
 
