@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Ship from './Ship';
+import { Ships } from './enums';
 
 interface Props {
   x: number;
   y: number;
+  onDrop: (event: React.DragEvent, x: number, y: number) => void
+  shipId?: string;
 }
 
-const Cell: React.FC<Props> = ({ x, y }) => {
-  const [currentDragTarget, setCurrentDragTarget] = useState<DragTarget>({ x: null, y: null, target: null });
+const Cell: React.FC<Props> = ({ x, y, onDrop, shipId }) => {
 
-  useEffect(() => {
-    console.log('Set current drag target');
-    console.log('Drag target X', currentDragTarget.x);
-    console.log('Drag target Y', currentDragTarget.y);
-  }, [currentDragTarget]);
+  const onDragOver = (ev: React.DragEvent) => {
+    ev.preventDefault();
+  };
 
   return (
     <td
-      onMouseOver={({ target }) => setCurrentDragTarget({ x, y, target })}
-      onMouseLeave={() => setCurrentDragTarget({ x: null, y: null, target: null })}
+      id={`${x}-${y}`}
+      onDragOver={(e)=> onDragOver(e)}
+      onDrop={(e)=>onDrop(e, x, y)}
       className="grid-cell">
+        {shipId ? <Ship ship={Ships.patrolBoat} /> : <div></div>}
     </td>
   );
 };
